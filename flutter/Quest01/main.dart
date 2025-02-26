@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 
 int study_minutes = -1;
 int break_minutes = -1;
-int study_time = 3;
-int break_time = 3;
-int break_time_4th = 5;
+int study_time = 25;
+int break_time = 5;
+int break_time_4th = 15;
 int circuit = 0;
 int long_break = 4;
 
