@@ -6,11 +6,12 @@ int study_minutes = -1;
 int break_minutes = -1;
 int study_time = 3;
 int break_time = 3;
-int break_time_4th = 15;
+int break_time_4th = 5;
 int circuit = 0;
+int long_break = 4;
 
 void main() {
-  Timer.periodic(Duration(seconds: 1), counter);
+  Timer.periodic(Duration(minutes: 1), counter);
 }
 
 bool? is_now_break(){
@@ -24,17 +25,17 @@ bool? is_now_break(){
   else if(break_minutes == -1 && study_minutes < study_time){
     return false;
   }
-  else if(circuit != 4 && study_minutes == study_time){
+  else if(circuit != long_break && study_minutes == study_time){
     print("공부 시간이 끝났습니다.");
     what_time_is_it_now();
     study_minutes = -1;
     break_minutes = 0;
     return true;
   }
-  else if(circuit != 4 && study_minutes == -1 && break_minutes < break_time){
+  else if(circuit != long_break && study_minutes == -1 && break_minutes < break_time){
     return true;
   }
-  else if(circuit != 4 && break_minutes == break_time) {
+  else if(circuit != long_break && break_minutes == break_time) {
     print("쉬는 시간이 끝났습니다.");
     what_time_is_it_now();
     break_minutes = -1;
@@ -43,17 +44,17 @@ bool? is_now_break(){
     print("$circuit 교시 시작합니다.");
     return false;
   }
-  else if(circuit == 4 && study_minutes == study_time){
+  else if(circuit == long_break && study_minutes == study_time){
     print("4번째 쉬는 시간이므로 15분 휴식합니다.");
     what_time_is_it_now();
     study_minutes = -1;
     break_minutes = 0;
     return true;
   }
-  else if(circuit == 4 && study_minutes == -1 && break_minutes < break_time_4th){
+  else if(circuit == long_break && study_minutes == -1 && break_minutes < break_time_4th){
     return true;
   }
-  else if(circuit == 4 && break_minutes == break_time_4th){
+  else if(circuit == long_break && break_minutes == break_time_4th){
     print("쉬는 시간이 끝났습니다.");
     what_time_is_it_now();
     break_minutes = -1;
